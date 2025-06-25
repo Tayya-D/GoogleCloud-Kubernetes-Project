@@ -46,3 +46,10 @@ cd ai-model-serving-platform
 git init
 ```
 
+###  **Initialize Terraform**
+```
+cd aws/terraform
+terraform init  # Sets up backend and providers
+terraform plan  # Review changes
+terraform apply  # Deploy (~15 minutes)
+```
