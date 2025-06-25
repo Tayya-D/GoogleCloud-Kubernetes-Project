@@ -25,7 +25,7 @@ module "eks" {
     ]
 
     # Node group with spot instances for cost savings
-    node_groups = {
+    eks_managed_node_groups = {
         spot = {
             desired_capacity = 3
             max_capacity     = 10
