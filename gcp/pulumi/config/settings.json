@@ -1,0 +1,9 @@
+{
+    "gke:cluster": {
+        "name": "ai-serving-prod",
+        "region": "us-central1",
+        "minNodes": 3,
+        "maxNodes": 10,
+        "machineType": "e2-standard-4"
+    }
+}
