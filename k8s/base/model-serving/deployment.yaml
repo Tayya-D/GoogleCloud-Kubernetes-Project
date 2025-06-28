@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: model-serving
+  labels:
+    app: model-serving
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: model-serving
+  template:
+    metadata:
+      labels:
+        app: model-serving
+      annotations:
+        # Workload Identity annotation (GCP)
+        iam.gke.io/gcp-service-account: "model-serving@PROJECT_ID.iam.gserviceaccount.com"
+    spec:
+      securityContext:
+        runAsNonRoot: true  # Security best practice
+        seccompProfile:
+          type: "RuntimeDefault"
+      containers:
+      - name: model
+        image: gcr.io/PROJECT_ID/model-serving:v1
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "1Gi"
+          limits:
+            cpu: "2"
+            memory: "4Gi"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080

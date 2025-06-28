@@ -53,3 +53,12 @@ terraform init  # Sets up backend and providers
 terraform plan  # Review changes
 terraform apply  # Deploy (~15 minutes)
 ```
+
+### **Deploy GKE**
+```
+cd gcp/pulumi
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+pulumi up  # Deploy GKE
+```
